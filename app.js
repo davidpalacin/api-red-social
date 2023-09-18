@@ -2,6 +2,7 @@ import Express from 'express'
 import { configDotenv } from 'dotenv'
 import cors from 'cors'
 import { authRouter } from './src/routers/authRouter.js'
+import { usersRouter } from './src/routers/usersRouter.js'
 
 configDotenv()
 
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRouter)
+app.use('/users', usersRouter)
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`)

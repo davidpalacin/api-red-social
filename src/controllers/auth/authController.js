@@ -1,13 +1,13 @@
-import { usersList } from '../fakedata/users.js'
+import { usersList } from '../../fakedata/users.js'
 import jwt from 'jsonwebtoken'
 
 export const authController = {}
 
 authController.login = async (req, res) => {
   // Get body request
-  const { username, password } = req.body
+  const { name, password } = req.body
   // Find user
-  const user = usersList.find(user => user.name === username && user.password === password)
+  const user = usersList.find(user => user.name === name && user.password === password)
 
   // Manage error
   if (!user) {
@@ -17,7 +17,7 @@ authController.login = async (req, res) => {
   }
 
   // Generate token if user exists
-  const token = jwt.sign({ _id: user.id }, process.env.JWTPRIVATEKEY)
+  const token = jwt.sign({ id: user.id, name: user.name }, process.env.JWTPRIVATEKEY)
 
   return res.json({
     token
