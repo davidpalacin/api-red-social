@@ -1,4 +1,5 @@
 import { usersList } from '../../fakedata/users.js'
+
 export const usersController = {}
 
 usersController.getAllUsers = async (req, res) => {

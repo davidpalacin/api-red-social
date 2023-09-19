@@ -3,6 +3,7 @@ import { configDotenv } from 'dotenv'
 import cors from 'cors'
 import { authRouter } from './src/routers/authRouter.js'
 import { usersRouter } from './src/routers/usersRouter.js'
+import { postsRouter } from './src/routers/postsRouter.js'
 
 configDotenv()
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRouter)
 app.use('/users', usersRouter)
+app.use('/posts', postsRouter)
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`)
