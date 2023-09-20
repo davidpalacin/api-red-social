@@ -12,7 +12,6 @@ postsController.likePost = async (req, res) => {
       error: 'Unexpected error, no such user'
     })
   }
-  console.log(user.name)
   if (!post) {
     return res.status(404).json({
       error: 'Unexpected error, no such post'
@@ -21,8 +20,10 @@ postsController.likePost = async (req, res) => {
   // Control if this like already exists
   const alreadyLiked = post.likes.find(username => username === user.name)
   if (alreadyLiked) {
-    return res.status(400).json({
-      error: 'You already liked this post.'
+    post.likes.filter(username => username !== user.name)
+    postsList[post.id - 1] = post
+    return res.json({
+      message: 'Post has been unliked.'
     })
   }
   // Simulate we are updating the post in database
